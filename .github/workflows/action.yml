@@ -1,0 +1,45 @@
+name: golang_ci
+
+on: [push]
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Go 1.13
+        uses: actions/setup-go@v2
+        with:
+          go-version: "^1.13.1" # The Go version to download (if necessary) and use.
+      - run: go version
+      - name: test
+        run: go test ./... -v
+
+  build-linux:
+    name: build for linux
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Go 1.13
+        uses: actions/setup-go@v2
+        with:
+          go-version: "^1.13.1" # The Go version to download (if necessary) and use.
+      - run: go version
+      - name: build
+        run: go build
+
+  build-windows:
+    name: build for windows
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Go 1.13
+        uses: actions/setup-go@v2
+        with:
+          go-version: "^1.13.1" # The Go version to download (if necessary) and use.
+      - run: go version
+      - name: build
+        run: GOOS=windows go build
