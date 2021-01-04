@@ -51,5 +51,5 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:
-          name: linux application
+          name: windows application
           path: selenium_golang.exe
