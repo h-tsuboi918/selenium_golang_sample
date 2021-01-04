@@ -28,7 +28,12 @@ jobs:
           go-version: "^1.13.1" # The Go version to download (if necessary) and use.
       - run: go version
       - name: build
-        run: go build
+        run: go build -o selenium_golang
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: linux application
+          path: selenium_golang
 
   build-windows:
     name: build for windows
@@ -42,4 +47,9 @@ jobs:
           go-version: "^1.13.1" # The Go version to download (if necessary) and use.
       - run: go version
       - name: build
-        run: GOOS=windows go build
+        run: GOOS=windows go build -o selenium_golang.exe
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: linux application
+          path: selenium_golang.exe
